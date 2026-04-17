@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prototyp mobile (1 egz. używany) - karta produktu 2nd hand | cyfrowe.pl</title>
+  <meta name="description" content="Prototyp mobilnej karty produktu z 1 egzemplarzem używanego (typowy scenariusz). Zadanie Asana 1211609581804503." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script crossorigin src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+  <script>window.react = window.React;</script>
+  <script crossorigin src="https://unpkg.com/lucide-react@0.383.0/dist/umd/lucide-react.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.24.7/babel.min.js"></script>
+
+  <style>
+    html, body { margin: 0; padding: 0; background: #F2F2F2; }
+    body { font-family: Lato, system-ui, -apple-system, sans-serif; }
+    #loading {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #525252;
+      font-size: 14px;
+      background: #F2F2F2;
+      z-index: 9999;
+    }
+  </style>
+</head>
+<body>
+  <div id="loading">Ładowanie prototypu...</div>
+  <div id="root"></div>
+
+  <script type="text/babel" src="./mobile-single.jsx" data-presets="react" data-type="module"></script>
+
+  <script>
+    const loadingEl = document.getElementById("loading");
+    const rootEl = document.getElementById("root");
+    const obs = new MutationObserver(() => {
+      if (rootEl.childNodes.length > 0) {
+        loadingEl.style.display = "none";
+        obs.disconnect();
+      }
+    });
+    obs.observe(rootEl, { childList: true });
+  </script>
+</body>
+</html>
